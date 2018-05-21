@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
     /* Initialize sockaddr_in data structure */
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(5000); // port
+    serv_addr.sin_port = htons(6000); // port
     char ip[50];
 if (argc < 2) 
 {
@@ -52,10 +52,9 @@ else
     printf("Connected to ip: %s : %d\n",inet_ntoa(serv_addr.sin_addr),ntohs(serv_addr.sin_port));
 
    	 /* Create file where data will be stored */
-    	FILE *fp;
-	char fname[100];
-	read(sockfd, fname, 256);
-	//strcat(fname,"AK");
+   	FILE *fp;
+	char fname[100] = "prueba cliente";
+	//read(sockfd, fname, 256);
 	printf("File Name: %s\n",fname);
 	printf("Receiving file...");
    	 fp = fopen(fname, "ab"); 
@@ -66,21 +65,32 @@ else
     	}
     long double sz=1;
     /* Receive data in chunks of 256 bytes */
-    while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0)
+    int buff[1] = {2};
+    write(sockfd, buff, 1);
+    char* h = "hola.txt";
+    write(sockfd, "hola.txt", 100);
+   while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0)
     { 
         sz++;
         gotoxy(0,4);
         printf("Received: %llf Mb",(sz/1024));
 	fflush(stdout);
-        // recvBuff[n] = 0;
         fwrite(recvBuff, 1,bytesReceived,fp);
-        // printf("%s \n", recvBuff);
-    }
 
+    }
+ /*   int buff[1] = {1};
+    write(sockfd, buff, 1);
+    char fileList[10][100] = {{0}};
+    read(sockfd, fileList, sizeof(fileList));
+    for (int i = 0; i<10; i++){
+	printf("%s\n", fileList[i]);
+	}
+*/
     if(bytesReceived < 0)
     {
         printf("\n Read Error \n");
     }
     printf("\nFile OK....Completed\n");
+    close(sockfd);
     return 0;
 }
