@@ -20,11 +20,11 @@ void SendFileListToClient(int connfd){
 
 void SendFileToClient(int connfd,char* fname)
 {
-	
         FILE *fp = fopen(fname,"rb");
         if(fp==NULL)
         {
             printf("File open error\n");
+	    fflush(stdout);
         }else{   
 
         /* Read data from file and send it */
@@ -33,20 +33,25 @@ void SendFileToClient(int connfd,char* fname)
 		    /* First read file in chunks of 256 bytes */
 		    unsigned char buff[1024]={0};
 		    int nread = getFileChunk(buff,1024,fp);
-		    printf("Bytes read %d \n", nread);        
+		    printf("Bytes read %d \n", nread); 
+		    fflush(stdout);       
 
 		    /* If read was success, send data. */
 		    if(nread > 0)
 		    {
 		        printf("Sending %s... \n", fname);
+			fflush(stdout);
 		        write(connfd, buff, nread);
 		    }
 		    if (nread < 1024)
 		    {
 		        if (feof(fp))
 			{
+			    buff[0] = 0;
+			    write(connfd, buff, 1);
 		            printf("End of file\n");
 			    printf("File transfer completed for id: %d\n",connfd);
+			     fflush(stdout);
 			}
 		        if (ferror(fp))
 		            printf("Error reading\n");
@@ -60,26 +65,34 @@ void* attendClient(int* arg){
 	char fname[100] = {0};
 	char fullpath[255] = {0};
 	int connfd=(int)*arg;
-	int option[1] = {0};
+	int option[1] = {1};
  	printf("Connection accepted and id: %d\n",connfd);
-      	printf("Connected to Client: %s:%d\n",inet_ntoa(c_addr.sin_addr),ntohs(c_addr.sin_port));
-	read(connfd, option, sizeof(int));
-	switch (option[0]){
-		case 0:
-			break;
-		case 1:
-			puts("entro a opcion1");
-			SendFileListToClient(connfd);
-			break;
-		case 2:
-			read(connfd, fname, sizeof(fname));
-			strcpy(fullpath,"./songs/");
-			strcat(fullpath, fname);
-			printf("%s\n", fullpath);
-			SendFileToClient(connfd, fullpath);
-			break;	
+      	printf("Connected to Client: %s:%d\n",inet_ntoa(c_addr.sin_addr),ntohs(c_addr.sin_port));	
+	while (option[0] != 0){
+		printf("waiting for client option\n");
+		if(read(connfd, option, 1) <= 0) break;
+		printf("Client Chosed Option: %d\n",option[0]);
+		fflush(stdout);
+		switch (option[0]){
+			case 0:
+				break;
+			case 1:
+				SendFileListToClient(connfd);
+				break;
+			case 2:
+				read(connfd, fname, sizeof(fname));
+				strcpy(fullpath,"./songs/");
+				strcat(fullpath, fname);
+				SendFileToClient(connfd, fullpath);
+				break;
+			case 3: 
+				read(connfd, fname, sizeof(fname));
+				strcpy(fullpath,"./song imgs/");
+				strcat(fullpath, fname);
+				SendFileToClient(connfd, fullpath);
+				break;	
+		}
 	}
-	
 	
 	printf("Closing Connection for id: %d\n",connfd);
 	close(connfd);

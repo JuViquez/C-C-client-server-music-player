@@ -71,21 +71,25 @@ else
     write(sockfd, "hola.txt", 100);
    while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0)
     { 
+	if(bytesReceived == 1 && recvBuff[0] == 0)break;
         sz++;
         gotoxy(0,4);
         printf("Received: %llf Mb",(sz/1024));
 	fflush(stdout);
         fwrite(recvBuff, 1,bytesReceived,fp);
-
+	
     }
- /*   int buff[1] = {1};
-    write(sockfd, buff, 1);
-    char fileList[10][100] = {{0}};
-    read(sockfd, fileList, sizeof(fileList));
-    for (int i = 0; i<10; i++){
+     sleep(1);
+     buff[0]=1;
+     write(sockfd, buff, 1);
+     buff[0] = 1;
+     write(sockfd, buff, 1);
+     char fileList[10][100] = {{0}};
+     read(sockfd, fileList, sizeof(fileList));
+     for (int i = 0; i<10; i++){
 	printf("%s\n", fileList[i]);
 	}
-*/
+
     if(bytesReceived < 0)
     {
         printf("\n Read Error \n");
