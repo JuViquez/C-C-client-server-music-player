@@ -47,8 +47,6 @@ void SendFileToClient(int connfd,char* fname)
 		    {
 		        if (feof(fp))
 			{
-			    buff[0] = 0;
-			    write(connfd, buff, 1);
 		            printf("End of file\n");
 			    printf("File transfer completed for id: %d\n",connfd);
 			     fflush(stdout);

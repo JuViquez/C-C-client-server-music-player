@@ -71,12 +71,12 @@ else
     write(sockfd, "hola.txt", 100);
    while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0)
     { 
-	if(bytesReceived == 1 && recvBuff[0] == 0)break;
         sz++;
         gotoxy(0,4);
         printf("Received: %llf Mb",(sz/1024));
 	fflush(stdout);
         fwrite(recvBuff, 1,bytesReceived,fp);
+	if(bytesReceived < 1024) break;
 	
     }
      sleep(1);
