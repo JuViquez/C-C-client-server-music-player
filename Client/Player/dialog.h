@@ -37,6 +37,8 @@ private slots:
 
     void on_BtnAdd_clicked();
 
+    void on_Remove_clicked();
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;

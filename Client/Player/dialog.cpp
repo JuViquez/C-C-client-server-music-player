@@ -64,3 +64,9 @@ void Dialog::on_BtnAdd_clicked()
         ui->panel->addItem("ERROR");
     }
 }
+
+void Dialog::on_Remove_clicked()
+{
+    ui->playlist->addItem(ui->panel->currentItem()->text());
+    PLCObject.GetSong(ui->panel->currentItem()->text().toLatin1().data());
+}

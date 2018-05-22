@@ -13,6 +13,7 @@ public:
     PlaylistController();
     void SetSockets();
     int GetSongsList();
+    int GetSong(char* songName);
     int sockfd = 0;
     char recvBuff[1024];
     struct sockaddr_in serv_addr;

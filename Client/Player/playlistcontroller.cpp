@@ -47,6 +47,38 @@ int PlaylistController::GetSongsList(){
             queueplayList.push_back(fileList[i]);
         }
      }
-     close(sockfd);
+     //close(sockfd);
      return 1;
+}
+
+int PlaylistController::GetSong(char* songName){
+    char cwd[1024];
+       if (getcwd(cwd, sizeof(cwd)) != NULL){
+           fprintf(stdout, "Current working dir: %s\n", cwd);}
+    FILE *fp;
+    int bytesReceived = 0;
+    char fname[100] = "clienteFile2.mp3";
+    //read(sockfd, fname, 256);
+    printf("File Name: %s\n",fname);
+    printf("Receiving file...");
+    fp = fopen(fname, "ab");
+        if(NULL == fp){
+            printf("Error opening file");
+            return 1;
+        }
+   long double sz=1;
+   /* Receive data in chunks of 256 bytes */
+   int buff[1] = {2};
+   write(sockfd, buff, 1);
+   write(sockfd, songName, 100);
+   while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0)
+    {
+        sz++;
+        printf("Received: %llf Mb",(sz/1024));
+        fflush(stdout);
+        fwrite(recvBuff, 1,bytesReceived,fp);
+        if(bytesReceived < 1024) break;
+    }
+   close(sockfd);
+   return 1;
 }
