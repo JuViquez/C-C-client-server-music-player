@@ -1,12 +1,23 @@
+#include <netinet/in.h>
+#include <iostream>
+#include <string>
+#include <vector>
 #ifndef PLAYLISTCONTROLLER_H
 #define PLAYLISTCONTROLLER_H
 
-
+using namespace std;
 class PlaylistController
 {
+
 public:
     PlaylistController();
-    char fileList[10][100] = {{0}};
+    void SetSockets();
+    int GetSongsList();
+    int sockfd = 0;
+    char recvBuff[1024];
+    struct sockaddr_in serv_addr;
+    vector<string> queueplayList;
+    vector<string> songsList;
 };
 
 #endif // PLAYLISTCONTROLLER_H

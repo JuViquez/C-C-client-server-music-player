@@ -1,3 +1,4 @@
+#include "playlistcontroller.h"
 #ifndef DIALOG_H
 #define DIALOG_H
 
@@ -12,7 +13,7 @@ class Dialog;
 class Dialog : public QDialog
 {
     Q_OBJECT
-
+    PlaylistController PLCObject;
 public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
@@ -29,6 +30,12 @@ private slots:
     void on_positionChanged(qint64 position);
 
     void on_durationChanged(qint64 position);
+
+    void on_pushButton_3_clicked();
+
+    void on_addPlaylist_clicked();
+
+    void on_BtnAdd_clicked();
 
 private:
     Ui::Dialog *ui;
