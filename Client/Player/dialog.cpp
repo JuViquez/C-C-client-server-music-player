@@ -23,6 +23,9 @@ Dialog::~Dialog()
     delete ui;
 }
 
+void Dialog::on_pushButton_3_clicked(){}
+void Dialog::on_addPlaylist_clicked(){}
+
 void Dialog::on_sliderProgress_sliderMoved(int position)
 {
     player->setPosition(position);
@@ -35,17 +38,16 @@ void Dialog::on_sliderVolume_sliderMoved(int position)
 
 void Dialog::on_pushButton_clicked()
 {
-    char cwd[1024];
-       if (getcwd(cwd, sizeof(cwd)) != NULL){
-           fprintf(stdout, "Current 2working dir: %s\n", cwd);}
-    //Load the file
-
-    QString applicationPath = QCoreApplication::applicationDirPath();
-
-    player->setMedia(QUrl::fromLocalFile(applicationPath+"/queen.mp3"));
-    player->play();
-
-    qDebug() << player->errorString();
+    if(ui->playlist->currentItem()){
+        PLCObject.currentSong = ui->playlist->currentItem()->text().toLatin1().data();
+        if(PLCObject.GetSong()>0){
+            QString applicationPath = QCoreApplication::applicationDirPath();
+            QString fileName = QString::fromStdString("/"+PLCObject.currentSong);
+            player->stop();
+            player->setMedia(QUrl::fromLocalFile(applicationPath.toUtf8().constData()+fileName));
+            player->play();
+            qDebug() << player->errorString();}
+        }
 }
 
 void Dialog::on_pushButton_2_clicked()
@@ -67,6 +69,7 @@ void Dialog::on_BtnAdd_clicked()
 {
     if(ui->panel->count()){
         ui->playlist->addItem(ui->panel->currentItem()->text());
+        PLCObject.queueplayList.push_back(ui->panel->currentItem()->text().toUtf8().constData());
         //PLCObject.GetSong(ui->panel->currentItem()->text().toLatin1().data());
     }
 }

@@ -13,9 +13,10 @@ public:
     PlaylistController();
     void SetSockets();
     int GetSongsList();
-    int GetSong(char* songName);
+    int GetSong();
     void RemoveSongFromPlaylist(string songTitle);
     void AddSongToPlaylist(string songTitle);
+    string currentSong;
     int sockfd = 0;
     char recvBuff[1024];
     struct sockaddr_in serv_addr;

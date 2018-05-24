@@ -142,7 +142,7 @@ public:
         StatusLabel->setGeometry(QRect(310, 340, 231, 20));
         verticalLayoutWidget = new QWidget(Dialog);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(70, 90, 160, 80));
+        verticalLayoutWidget->setGeometry(QRect(90, 180, 160, 80));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);

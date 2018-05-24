@@ -43,7 +43,6 @@ int PlaylistController::GetSongsList(){
     read(sockfd, fileList, sizeof(fileList));
     for (int i = 0; i<10; i++){
         if(strlen(fileList[i])){
-            printf("%s\n", fileList[i]);
             songsList.push_back(fileList[i]);
         }
      }
@@ -51,31 +50,32 @@ int PlaylistController::GetSongsList(){
      return 1;
 }
 
-int PlaylistController::GetSong(char* songName){
-
-    FILE *fp;
-    int bytesReceived = 0;
-    char fname[100] = "clienteFile2.mp3";
-    fp = fopen(fname, "ab");
-        if(NULL == fp){
-            printf("Error opening file");
-            return 1;
+int PlaylistController::GetSong(){
+    try{
+        FILE *fp;
+        int bytesReceived = 0;
+        fp = fopen(currentSong.c_str(), "ab");
+            if(NULL == fp){
+                printf("Error opening file");
+                return -1;
+            }
+       long double sz=1;
+       int buff[1] = {2};
+       write(sockfd, buff, 1);
+       write(sockfd, currentSong.c_str(), 100);
+       while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0)
+        {
+            sz++;
+            printf("Received: %llf Mb",(sz/1024));
+            fflush(stdout);
+            fwrite(recvBuff, 1,bytesReceived,fp);
+            if(bytesReceived < 1024) break;
         }
-   long double sz=1;
-   /* Receive data in chunks of 256 bytes */
-   int buff[1] = {2};
-   write(sockfd, buff, 1);
-   write(sockfd, songName, 100);
-   while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0)
-    {
-        sz++;
-        printf("Received: %llf Mb",(sz/1024));
-        fflush(stdout);
-        fwrite(recvBuff, 1,bytesReceived,fp);
-        if(bytesReceived < 1024) break;
+       close(sockfd);
+       return 1;
+    }catch(...){
+        return -1;
     }
-   close(sockfd);
-   return 1;
 }
 
 void PlaylistController::RemoveSongFromPlaylist(string songTitle){
