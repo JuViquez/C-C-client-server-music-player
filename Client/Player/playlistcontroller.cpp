@@ -28,7 +28,7 @@ PlaylistController::PlaylistController()
 }
 
 void PlaylistController::SetSockets(){
-    printf("\n Error : Could not create socket2 \n");
+    printf("\n set sockets \n");
 }
 
 int PlaylistController::GetSongsList(){
@@ -44,7 +44,7 @@ int PlaylistController::GetSongsList(){
     for (int i = 0; i<10; i++){
         if(strlen(fileList[i])){
             printf("%s\n", fileList[i]);
-            queueplayList.push_back(fileList[i]);
+            songsList.push_back(fileList[i]);
         }
      }
      //close(sockfd);
@@ -52,15 +52,10 @@ int PlaylistController::GetSongsList(){
 }
 
 int PlaylistController::GetSong(char* songName){
-    char cwd[1024];
-       if (getcwd(cwd, sizeof(cwd)) != NULL){
-           fprintf(stdout, "Current working dir: %s\n", cwd);}
+
     FILE *fp;
     int bytesReceived = 0;
     char fname[100] = "clienteFile2.mp3";
-    //read(sockfd, fname, 256);
-    printf("File Name: %s\n",fname);
-    printf("Receiving file...");
     fp = fopen(fname, "ab");
         if(NULL == fp){
             printf("Error opening file");
@@ -81,4 +76,20 @@ int PlaylistController::GetSong(char* songName){
     }
    close(sockfd);
    return 1;
+}
+
+void PlaylistController::RemoveSongFromPlaylist(string songTitle){
+    for(int q=0; q<queueplayList.size(); q++)
+    {
+        if(queueplayList[q] == songTitle )
+        {
+            queueplayList.erase(queueplayList.begin()+q);
+            --q;
+        }
+    }
+}
+
+void PlaylistController::AddSongToPlaylist(string songTitle){
+    //FALTA BUSCAR LAS REPETIDAS
+    songsList.push_back(songTitle);
 }

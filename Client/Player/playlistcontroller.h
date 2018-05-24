@@ -14,6 +14,8 @@ public:
     void SetSockets();
     int GetSongsList();
     int GetSong(char* songName);
+    void RemoveSongFromPlaylist(string songTitle);
+    void AddSongToPlaylist(string songTitle);
     int sockfd = 0;
     char recvBuff[1024];
     struct sockaddr_in serv_addr;

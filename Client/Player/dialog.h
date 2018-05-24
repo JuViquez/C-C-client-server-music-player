@@ -39,6 +39,10 @@ private slots:
 
     void on_Remove_clicked();
 
+    void mediaStatusChanged(QMediaPlayer::MediaStatus state);
+
+    void on_BtnRefresh_clicked();
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;

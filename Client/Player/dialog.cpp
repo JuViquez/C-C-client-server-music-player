@@ -2,6 +2,7 @@
 #include "ui_dialog.h"
 #include "playlistcontroller.h"
 #include <vector>
+#include <unistd.h>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -13,6 +14,8 @@ Dialog::Dialog(QWidget *parent) :
     PLCObject.SetSockets();
     connect(player, &QMediaPlayer::positionChanged, this, &Dialog::on_positionChanged);
     connect(player, &QMediaPlayer::durationChanged, this, &Dialog::on_durationChanged);
+    connect(player,SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),this,SLOT(mediaStatusChanged(QMediaPlayer::MediaStatus)));
+
 }
 
 Dialog::~Dialog()
@@ -32,10 +35,16 @@ void Dialog::on_sliderVolume_sliderMoved(int position)
 
 void Dialog::on_pushButton_clicked()
 {
+    char cwd[1024];
+       if (getcwd(cwd, sizeof(cwd)) != NULL){
+           fprintf(stdout, "Current 2working dir: %s\n", cwd);}
     //Load the file
-    printf("Empieza a reproducirse");
-    player->setMedia(QUrl::fromLocalFile("/home/jose/Documentos/Qt-129-ffa29ce767bc6928dec2e7f3b197ab52951b8a6d/MyPlayer/queen.mp3"));
+
+    QString applicationPath = QCoreApplication::applicationDirPath();
+
+    player->setMedia(QUrl::fromLocalFile(applicationPath+"/queen.mp3"));
     player->play();
+
     qDebug() << player->errorString();
 }
 
@@ -56,17 +65,39 @@ void Dialog::on_durationChanged(qint64 position)
 
 void Dialog::on_BtnAdd_clicked()
 {
-    if(PLCObject.GetSongsList()>0){
-        for(std::string &s : PLCObject.queueplayList) {
-            ui->panel->addItem(s.c_str());
-        }
-    }else{
-        ui->panel->addItem("ERROR");
+    if(ui->panel->count()){
+        ui->playlist->addItem(ui->panel->currentItem()->text());
+        //PLCObject.GetSong(ui->panel->currentItem()->text().toLatin1().data());
+    }
+}
+
+void Dialog::mediaStatusChanged(QMediaPlayer::MediaStatus state)
+{
+    if(state==QMediaPlayer::EndOfMedia)
+    {
+       ui->panel->addItem("Termino cancion");
     }
 }
 
 void Dialog::on_Remove_clicked()
 {
-    ui->playlist->addItem(ui->panel->currentItem()->text());
-    PLCObject.GetSong(ui->panel->currentItem()->text().toLatin1().data());
+    if(ui->playlist->count()){
+        PLCObject.RemoveSongFromPlaylist(ui->playlist->currentItem()->text().toUtf8().constData());
+        ui->playlist->clear();
+        for(std::string &s : PLCObject.queueplayList) {
+            ui->playlist->addItem(s.c_str());
+        }
+    }
+}
+
+void Dialog::on_BtnRefresh_clicked()
+{
+    if(PLCObject.GetSongsList()>0){
+        ui->panel->clear();
+        for(std::string &s : PLCObject.songsList) {
+            ui->panel->addItem(s.c_str());
+        }
+    }else{
+        //ui->StatusLabel->setText("Error: Listing files failed");
+    }
 }
