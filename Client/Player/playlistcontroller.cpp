@@ -74,7 +74,8 @@ int PlaylistController::GetSong(){
             fwrite(recvBuff, 1,bytesReceived,fp);
             if(bytesReceived < 1024) break;
         }
-       close(sockfd);
+       fclose (fp);
+      // close(sockfd);
        return 1;
     }catch(...){
         return -1;
@@ -87,6 +88,16 @@ void PlaylistController::RemoveSongFromPlaylist(int songIndex){
 
 void PlaylistController::ShufflePLaylist(){
     std::random_shuffle ( queueplayList.begin(), queueplayList.end() );
+    if(!currentSong.empty()){
+        for(int q=0; q<queueplayList.size(); q++)
+           {
+               if(queueplayList[q] == currentSong )
+               {
+                   currentIndexSong = q;
+                   break;
+               }
+        }
+    }
 }
 
 void PlaylistController::AddSongToPlaylist(string songTitle){
@@ -104,12 +115,7 @@ void PlaylistController::RemoveSongFile(){
 
 
 int PlaylistController::PlayNextSong(){
-    printf("PlayNextSong %d \n",currentIndexSong);
-    for(std::string &s : queueplayList){
-        printf("SONG %s \n",s.c_str());
-    }
     if(queueplayList.size()-1 != currentIndexSong){
-        printf("Primer IF %s siguiente cancion \n",queueplayList[currentIndexSong+1].c_str());
         if(queueplayList[++currentIndexSong] != currentSong ){
             RemoveSongFile();
             currentSong = queueplayList[currentIndexSong];

@@ -38,21 +38,26 @@ void Dialog::on_sliderVolume_sliderMoved(int position)
 
 void Dialog::on_pushButton_clicked()
 {
+
     string nextSong = ui->playlist->currentItem()->text().toLatin1().data();
     player->stop();
     if(!nextSong.compare(PLCObject.currentSong)){
-        printf("Same song");
         player->play();
     }else{
         PLCObject.RemoveSongFile();
         if(ui->playlist->currentItem()){
             PLCObject.currentIndexSong = ui->playlist->currentRow();
             PLCObject.currentSong = nextSong;
-            if(PLCObject.GetSong()>0)
-                LoadSong();
+            if(PLCObject.GetSong()>0){
+                QString applicationPath = QCoreApplication::applicationDirPath();
+                QString fileName = QString::fromStdString("/"+PLCObject.currentSong);
+                player->setMedia(QUrl::fromLocalFile(applicationPath.toUtf8().constData()+fileName));
+                player->play();
+                qDebug() << player->errorString();
+            }
+
         }
     }
-
 }
 
 void Dialog::LoadSong(){
@@ -89,12 +94,11 @@ void Dialog::on_BtnAdd_clicked()
 
 void Dialog::mediaStatusChanged(QMediaPlayer::MediaStatus state)
 {
-    printf("Ya termino cancion \n");
     if(state==QMediaPlayer::EndOfMedia)
     {
-        printf("Primer IF \n");
         if(PLCObject.PlayNextSong() > 0){
             LoadSong();
+            ui->playlist->setCurrentRow(PLCObject.currentIndexSong);
         }
     }
 }
