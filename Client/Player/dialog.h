@@ -43,9 +43,14 @@ private slots:
 
     void on_BtnRefresh_clicked();
 
+    void on_BtnShuffle_clicked();
+
+    void on_BtnPause_clicked();
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;
+    void LoadSong();
 
 };
 

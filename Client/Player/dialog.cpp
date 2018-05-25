@@ -38,16 +38,29 @@ void Dialog::on_sliderVolume_sliderMoved(int position)
 
 void Dialog::on_pushButton_clicked()
 {
-    if(ui->playlist->currentItem()){
-        PLCObject.currentSong = ui->playlist->currentItem()->text().toLatin1().data();
-        if(PLCObject.GetSong()>0){
-            QString applicationPath = QCoreApplication::applicationDirPath();
-            QString fileName = QString::fromStdString("/"+PLCObject.currentSong);
-            player->stop();
-            player->setMedia(QUrl::fromLocalFile(applicationPath.toUtf8().constData()+fileName));
-            player->play();
-            qDebug() << player->errorString();}
+    string nextSong = ui->playlist->currentItem()->text().toLatin1().data();
+    player->stop();
+    if(!nextSong.compare(PLCObject.currentSong)){
+        printf("Same song");
+        player->play();
+    }else{
+        PLCObject.RemoveSongFile();
+        if(ui->playlist->currentItem()){
+            PLCObject.currentIndexSong = ui->playlist->currentRow();
+            PLCObject.currentSong = nextSong;
+            if(PLCObject.GetSong()>0)
+                LoadSong();
         }
+    }
+
+}
+
+void Dialog::LoadSong(){
+    QString applicationPath = QCoreApplication::applicationDirPath();
+    QString fileName = QString::fromStdString("/"+PLCObject.currentSong);
+    player->setMedia(QUrl::fromLocalFile(applicationPath.toUtf8().constData()+fileName));
+    player->play();
+    qDebug() << player->errorString();
 }
 
 void Dialog::on_pushButton_2_clicked()
@@ -76,16 +89,20 @@ void Dialog::on_BtnAdd_clicked()
 
 void Dialog::mediaStatusChanged(QMediaPlayer::MediaStatus state)
 {
+    printf("Ya termino cancion \n");
     if(state==QMediaPlayer::EndOfMedia)
     {
-       ui->panel->addItem("Termino cancion");
+        printf("Primer IF \n");
+        if(PLCObject.PlayNextSong() > 0){
+            LoadSong();
+        }
     }
 }
 
 void Dialog::on_Remove_clicked()
 {
     if(ui->playlist->count()){
-        PLCObject.RemoveSongFromPlaylist(ui->playlist->currentItem()->text().toUtf8().constData());
+        PLCObject.RemoveSongFromPlaylist(ui->playlist->currentRow());
         ui->playlist->clear();
         for(std::string &s : PLCObject.queueplayList) {
             ui->playlist->addItem(s.c_str());
@@ -102,5 +119,27 @@ void Dialog::on_BtnRefresh_clicked()
         }
     }else{
         //ui->StatusLabel->setText("Error: Listing files failed");
+    }
+}
+
+void Dialog::on_BtnShuffle_clicked()
+{
+    if(PLCObject.queueplayList.size()){
+        PLCObject.ShufflePLaylist();
+        ui->playlist->clear();
+        for(std::string &s : PLCObject.queueplayList) {
+            ui->playlist->addItem(s.c_str());
+        }
+    }
+}
+
+void Dialog::on_BtnPause_clicked()
+{
+    if(player->state() == QMediaPlayer::PlayingState){
+        player->pause();
+        ui->BtnPause->setText("Resume");
+    }else if(player->mediaStatus() > 2 ){
+        player->play();
+        ui->BtnPause->setText("Pause");
     }
 }

@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
@@ -20,7 +19,6 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -31,8 +29,8 @@ public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_2;
+    QPushButton *BtnPause;
     QPushButton *pushButton;
-    QCheckBox *randomCheck;
     QWidget *layoutWidget1;
     QFormLayout *formLayout;
     QLabel *label;
@@ -45,19 +43,18 @@ public:
     QListWidget *playlist;
     QPushButton *BtnAdd;
     QPushButton *Remove;
-    QLabel *StatusLabel;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout;
     QPushButton *BtnRefresh;
+    QPushButton *BtnShuffle;
+    QLabel *StatusLabel;
 
     void setupUi(QDialog *Dialog)
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QStringLiteral("Dialog"));
-        Dialog->resize(545, 363);
+        Dialog->resize(565, 363);
         layoutWidget = new QWidget(Dialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 330, 256, 27));
+        layoutWidget->setGeometry(QRect(10, 330, 263, 27));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -68,15 +65,15 @@ public:
 
         horizontalLayout->addWidget(pushButton_2);
 
+        BtnPause = new QPushButton(layoutWidget);
+        BtnPause->setObjectName(QStringLiteral("BtnPause"));
+
+        horizontalLayout->addWidget(BtnPause);
+
         pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         horizontalLayout->addWidget(pushButton);
-
-        randomCheck = new QCheckBox(layoutWidget);
-        randomCheck->setObjectName(QStringLiteral("randomCheck"));
-
-        horizontalLayout->addWidget(randomCheck);
 
         layoutWidget1 = new QWidget(Dialog);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
@@ -111,7 +108,7 @@ public:
 
         layoutWidget2 = new QWidget(Dialog);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(260, 60, 261, 211));
+        layoutWidget2->setGeometry(QRect(260, 60, 289, 211));
         gridLayout = new QGridLayout(layoutWidget2);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -120,39 +117,36 @@ public:
         panel = new QListWidget(layoutWidget2);
         panel->setObjectName(QStringLiteral("panel"));
 
-        gridLayout->addWidget(panel, 0, 1, 1, 1);
+        gridLayout->addWidget(panel, 1, 1, 1, 1);
 
         playlist = new QListWidget(layoutWidget2);
         playlist->setObjectName(QStringLiteral("playlist"));
 
-        gridLayout->addWidget(playlist, 0, 0, 1, 1);
+        gridLayout->addWidget(playlist, 1, 0, 1, 1);
 
         BtnAdd = new QPushButton(layoutWidget2);
         BtnAdd->setObjectName(QStringLiteral("BtnAdd"));
 
-        gridLayout->addWidget(BtnAdd, 1, 1, 1, 1);
+        gridLayout->addWidget(BtnAdd, 2, 1, 1, 1);
 
         Remove = new QPushButton(layoutWidget2);
         Remove->setObjectName(QStringLiteral("Remove"));
 
-        gridLayout->addWidget(Remove, 1, 0, 1, 1);
+        gridLayout->addWidget(Remove, 2, 0, 1, 1);
+
+        BtnRefresh = new QPushButton(layoutWidget2);
+        BtnRefresh->setObjectName(QStringLiteral("BtnRefresh"));
+
+        gridLayout->addWidget(BtnRefresh, 0, 1, 1, 1);
+
+        BtnShuffle = new QPushButton(layoutWidget2);
+        BtnShuffle->setObjectName(QStringLiteral("BtnShuffle"));
+
+        gridLayout->addWidget(BtnShuffle, 0, 0, 1, 1);
 
         StatusLabel = new QLabel(Dialog);
         StatusLabel->setObjectName(QStringLiteral("StatusLabel"));
         StatusLabel->setGeometry(QRect(310, 340, 231, 20));
-        verticalLayoutWidget = new QWidget(Dialog);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(90, 180, 160, 80));
-        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        BtnRefresh = new QPushButton(verticalLayoutWidget);
-        BtnRefresh->setObjectName(QStringLiteral("BtnRefresh"));
-
-        verticalLayout->addWidget(BtnRefresh);
-
 
         retranslateUi(Dialog);
 
@@ -162,15 +156,16 @@ public:
     void retranslateUi(QDialog *Dialog)
     {
         Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", nullptr));
-        pushButton_2->setText(QApplication::translate("Dialog", "Stop2", nullptr));
+        pushButton_2->setText(QApplication::translate("Dialog", "Stop", nullptr));
+        BtnPause->setText(QApplication::translate("Dialog", "Pause", nullptr));
         pushButton->setText(QApplication::translate("Dialog", "Start", nullptr));
-        randomCheck->setText(QApplication::translate("Dialog", "Random", nullptr));
         label->setText(QApplication::translate("Dialog", "Progress", nullptr));
         label_2->setText(QApplication::translate("Dialog", "Volume", nullptr));
         BtnAdd->setText(QApplication::translate("Dialog", "Add to Playlist", nullptr));
         Remove->setText(QApplication::translate("Dialog", "Remove ", nullptr));
-        StatusLabel->setText(QString());
         BtnRefresh->setText(QApplication::translate("Dialog", "Refresh List", nullptr));
+        BtnShuffle->setText(QApplication::translate("Dialog", "Shuffle List", nullptr));
+        StatusLabel->setText(QString());
     } // retranslateUi
 
 };

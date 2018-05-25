@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>545</width>
+    <width>565</width>
     <height>363</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>10</x>
      <y>330</y>
-     <width>256</width>
+     <width>263</width>
      <height>27</height>
     </rect>
    </property>
@@ -26,7 +26,14 @@
     <item>
      <widget class="QPushButton" name="pushButton_2">
       <property name="text">
-       <string>Stop2</string>
+       <string>Stop</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="BtnPause">
+      <property name="text">
+       <string>Pause</string>
       </property>
      </widget>
     </item>
@@ -34,13 +41,6 @@
      <widget class="QPushButton" name="pushButton">
       <property name="text">
        <string>Start</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QCheckBox" name="randomCheck">
-      <property name="text">
-       <string>Random</string>
       </property>
      </widget>
     </item>
@@ -94,28 +94,42 @@
     <rect>
      <x>260</x>
      <y>60</y>
-     <width>261</width>
+     <width>289</width>
      <height>211</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
+    <item row="1" column="1">
      <widget class="QListWidget" name="panel"/>
     </item>
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QListWidget" name="playlist"/>
     </item>
-    <item row="1" column="1">
+    <item row="2" column="1">
      <widget class="QPushButton" name="BtnAdd">
       <property name="text">
        <string>Add to Playlist</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item row="2" column="0">
      <widget class="QPushButton" name="Remove">
       <property name="text">
        <string>Remove </string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="BtnRefresh">
+      <property name="text">
+       <string>Refresh List</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="BtnShuffle">
+      <property name="text">
+       <string>Shuffle List</string>
       </property>
      </widget>
     </item>
@@ -133,25 +147,6 @@
    <property name="text">
     <string/>
    </property>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>180</y>
-     <width>160</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QPushButton" name="BtnRefresh">
-      <property name="text">
-       <string>Refresh List</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

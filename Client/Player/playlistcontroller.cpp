@@ -8,8 +8,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
+#include <iostream>
 #include <arpa/inet.h>
 #include <vector>
+#include <algorithm>
+#include <cstdio>
 
 PlaylistController::PlaylistController()
 {
@@ -78,18 +81,42 @@ int PlaylistController::GetSong(){
     }
 }
 
-void PlaylistController::RemoveSongFromPlaylist(string songTitle){
-    for(int q=0; q<queueplayList.size(); q++)
-    {
-        if(queueplayList[q] == songTitle )
-        {
-            queueplayList.erase(queueplayList.begin()+q);
-            --q;
-        }
-    }
+void PlaylistController::RemoveSongFromPlaylist(int songIndex){
+    queueplayList.erase(queueplayList.begin()+songIndex);
+}
+
+void PlaylistController::ShufflePLaylist(){
+    std::random_shuffle ( queueplayList.begin(), queueplayList.end() );
 }
 
 void PlaylistController::AddSongToPlaylist(string songTitle){
     //FALTA BUSCAR LAS REPETIDAS
     songsList.push_back(songTitle);
 }
+
+void PlaylistController::RemoveSongFile(){
+    if(!currentSong.empty()){
+        remove(currentSong.c_str());
+        printf("Borrando cancion");
+        currentSong = "";
+    }
+}
+
+
+int PlaylistController::PlayNextSong(){
+    printf("PlayNextSong %d \n",currentIndexSong);
+    for(std::string &s : queueplayList){
+        printf("SONG %s \n",s.c_str());
+    }
+    if(queueplayList.size()-1 != currentIndexSong){
+        printf("Primer IF %s siguiente cancion \n",queueplayList[currentIndexSong+1].c_str());
+        if(queueplayList[++currentIndexSong] != currentSong ){
+            RemoveSongFile();
+            currentSong = queueplayList[currentIndexSong];
+            return GetSong();
+        }
+        return 1;
+    }
+    return -1;
+}
+
