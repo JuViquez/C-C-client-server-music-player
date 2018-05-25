@@ -51,7 +51,10 @@ private:
     Ui::Dialog *ui;
     QMediaPlayer* player;
     void LoadSong();
-
+    int seconds;
+    int minutes;
+    int hours;
+    QTime* timeDuration;
 };
 
 #endif // DIALOG_H

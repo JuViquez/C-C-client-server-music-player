@@ -1,5 +1,6 @@
 #include "dialog.h"
 #include "ui_dialog.h"
+#include <QTime>
 #include "playlistcontroller.h"
 #include <vector>
 #include <unistd.h>
@@ -76,11 +77,19 @@ void Dialog::on_pushButton_2_clicked()
 void Dialog::on_positionChanged(qint64 position)
 {
     ui->sliderProgress->setValue(position);
+    seconds = (position/1000) % 60;
+    minutes = (position/60000) % 60;
+    timeDuration = new QTime(0, minutes,seconds);
+    ui->positionLabel->setText(timeDuration->toString());
 }
 
 void Dialog::on_durationChanged(qint64 position)
 {
     ui->sliderProgress->setMaximum(position);
+    int seconds2 = (position/1000) % 60;
+    int minutes2 = (position/60000) % 60;
+    QTime* TotalDuration = new QTime(0, minutes2,seconds2);
+    ui->totalLabel->setText(TotalDuration->toString());
 }
 
 void Dialog::on_BtnAdd_clicked()
@@ -147,3 +156,4 @@ void Dialog::on_BtnPause_clicked()
         ui->BtnPause->setText("Pause");
     }
 }
+

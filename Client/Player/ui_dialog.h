@@ -34,9 +34,9 @@ public:
     QWidget *layoutWidget1;
     QFormLayout *formLayout;
     QLabel *label;
+    QSlider *sliderProgress;
     QLabel *label_2;
     QSlider *sliderVolume;
-    QSlider *sliderProgress;
     QWidget *layoutWidget2;
     QGridLayout *gridLayout;
     QListWidget *panel;
@@ -46,6 +46,11 @@ public:
     QPushButton *BtnRefresh;
     QPushButton *BtnShuffle;
     QLabel *StatusLabel;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *positionLabel;
+    QLabel *backslashlabel;
+    QLabel *totalLabel;
 
     void setupUi(QDialog *Dialog)
     {
@@ -77,7 +82,7 @@ public:
 
         layoutWidget1 = new QWidget(Dialog);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(10, 274, 511, 63));
+        layoutWidget1->setGeometry(QRect(10, 274, 511, 67));
         formLayout = new QFormLayout(layoutWidget1);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -87,6 +92,12 @@ public:
         label->setObjectName(QStringLiteral("label"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
+
+        sliderProgress = new QSlider(layoutWidget1);
+        sliderProgress->setObjectName(QStringLiteral("sliderProgress"));
+        sliderProgress->setOrientation(Qt::Horizontal);
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, sliderProgress);
 
         label_2 = new QLabel(layoutWidget1);
         label_2->setObjectName(QStringLiteral("label_2"));
@@ -99,12 +110,6 @@ public:
         sliderVolume->setOrientation(Qt::Horizontal);
 
         formLayout->setWidget(1, QFormLayout::FieldRole, sliderVolume);
-
-        sliderProgress = new QSlider(layoutWidget1);
-        sliderProgress->setObjectName(QStringLiteral("sliderProgress"));
-        sliderProgress->setOrientation(Qt::Horizontal);
-
-        formLayout->setWidget(0, QFormLayout::FieldRole, sliderProgress);
 
         layoutWidget2 = new QWidget(Dialog);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
@@ -147,6 +152,29 @@ public:
         StatusLabel = new QLabel(Dialog);
         StatusLabel->setObjectName(QStringLiteral("StatusLabel"));
         StatusLabel->setGeometry(QRect(310, 340, 231, 20));
+        widget = new QWidget(Dialog);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(10, 250, 139, 19));
+        horizontalLayout_2 = new QHBoxLayout(widget);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        positionLabel = new QLabel(widget);
+        positionLabel->setObjectName(QStringLiteral("positionLabel"));
+
+        horizontalLayout_2->addWidget(positionLabel);
+
+        backslashlabel = new QLabel(widget);
+        backslashlabel->setObjectName(QStringLiteral("backslashlabel"));
+
+        horizontalLayout_2->addWidget(backslashlabel);
+
+        totalLabel = new QLabel(widget);
+        totalLabel->setObjectName(QStringLiteral("totalLabel"));
+
+        horizontalLayout_2->addWidget(totalLabel);
+
 
         retranslateUi(Dialog);
 
@@ -166,6 +194,9 @@ public:
         BtnRefresh->setText(QApplication::translate("Dialog", "Refresh List", nullptr));
         BtnShuffle->setText(QApplication::translate("Dialog", "Shuffle List", nullptr));
         StatusLabel->setText(QString());
+        positionLabel->setText(QApplication::translate("Dialog", "00:00:00", nullptr));
+        backslashlabel->setText(QApplication::translate("Dialog", "/", nullptr));
+        totalLabel->setText(QApplication::translate("Dialog", "00:00:00", nullptr));
     } // retranslateUi
 
 };
