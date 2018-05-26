@@ -20,9 +20,11 @@ public:
     void ShufflePLaylist();
     void RemoveSongFile();
     int PlayNextSong();
+    int PlayPreviousSong();
     //Control Variables
     string currentSong;
     int currentIndexSong;
+    string currentImage;
     //Sockets attributes
     int sockfd = 0;
     char recvBuff[1024];

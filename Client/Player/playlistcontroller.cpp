@@ -62,19 +62,32 @@ int PlaylistController::GetSong(){
                 printf("Error opening file");
                 return -1;
             }
-       long double sz=1;
        int buff[1] = {2};
        write(sockfd, buff, 1);
        write(sockfd, currentSong.c_str(), 100);
-       while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0)
-        {
-            sz++;
-            printf("Received: %llf Mb",(sz/1024));
-            fflush(stdout);
+       while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0){
             fwrite(recvBuff, 1,bytesReceived,fp);
             if(bytesReceived < 1024) break;
         }
        fclose (fp);
+       currentImage = currentSong.substr(0, currentSong.size()-3) + "png";
+
+       //Image File
+       FILE *fpImage;
+       bytesReceived = 0;
+       fpImage = fopen(currentImage.c_str(), "ab");
+           if(NULL == fp){
+               printf("Error opening image file");
+               return -1;
+           }
+       buff[0] = 3;
+       write(sockfd, buff, 1);
+       write(sockfd, currentImage.c_str(), 100);
+       while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0){
+           fwrite(recvBuff, 1,bytesReceived,fpImage);
+           if(bytesReceived < 1024) break;
+       }
+       fclose (fpImage);
       // close(sockfd);
        return 1;
     }catch(...){
@@ -108,8 +121,9 @@ void PlaylistController::AddSongToPlaylist(string songTitle){
 void PlaylistController::RemoveSongFile(){
     if(!currentSong.empty()){
         remove(currentSong.c_str());
-        printf("Borrando cancion");
+        remove(currentImage.c_str());
         currentSong = "";
+        currentImage = "";
     }
 }
 
@@ -117,6 +131,18 @@ void PlaylistController::RemoveSongFile(){
 int PlaylistController::PlayNextSong(){
     if(queueplayList.size()-1 != currentIndexSong){
         if(queueplayList[++currentIndexSong] != currentSong ){
+            RemoveSongFile();
+            currentSong = queueplayList[currentIndexSong];
+            return GetSong();
+        }
+        return 1;
+    }
+    return -1;
+}
+
+int PlaylistController::PlayPreviousSong(){
+    if(currentIndexSong > 0){
+        if(queueplayList[--currentIndexSong] != currentSong ){
             RemoveSongFile();
             currentSong = queueplayList[currentIndexSong];
             return GetSong();

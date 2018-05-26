@@ -47,6 +47,10 @@ private slots:
 
     void on_BtnPause_clicked();
 
+    void on_BtnNext_clicked();
+
+    void on_BtnPrevious_clicked();
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;

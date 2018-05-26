@@ -67,6 +67,9 @@ void* attendClient(int* arg){
  	printf("Connection accepted and id: %d\n",connfd);
       	printf("Connected to Client: %s:%d\n",inet_ntoa(c_addr.sin_addr),ntohs(c_addr.sin_port));
 	while (option[0] != 0){
+                memset(fullpath, 0, 255);
+                memset(fname, 0, 100);
+                memset(option,0,1);
 		printf("waiting for client option\n");
 		if(read(connfd, option, 1) <= 0) break;
 		printf("Client Chosed Option: %d\n",option[0]);
@@ -85,7 +88,7 @@ void* attendClient(int* arg){
 				break;
 			case 3:
 				read(connfd, fname, sizeof(fname));
-				strcpy(fullpath,"./song imgs/");
+                                strcpy(fullpath,"./images/");
 				strcat(fullpath, fname);
 				SendFileToClient(connfd, fullpath);
 				break;

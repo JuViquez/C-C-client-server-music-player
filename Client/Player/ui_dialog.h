@@ -29,8 +29,10 @@ public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_2;
-    QPushButton *BtnPause;
     QPushButton *pushButton;
+    QPushButton *BtnPrevious;
+    QPushButton *BtnPause;
+    QPushButton *BtnNext;
     QWidget *layoutWidget1;
     QFormLayout *formLayout;
     QLabel *label;
@@ -40,26 +42,26 @@ public:
     QWidget *layoutWidget2;
     QGridLayout *gridLayout;
     QListWidget *panel;
-    QListWidget *playlist;
     QPushButton *BtnAdd;
     QPushButton *Remove;
     QPushButton *BtnRefresh;
     QPushButton *BtnShuffle;
-    QLabel *StatusLabel;
-    QWidget *widget;
+    QListWidget *playlist;
+    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *positionLabel;
     QLabel *backslashlabel;
     QLabel *totalLabel;
+    QLabel *imageLabel;
 
     void setupUi(QDialog *Dialog)
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QStringLiteral("Dialog"));
-        Dialog->resize(565, 363);
+        Dialog->resize(736, 463);
         layoutWidget = new QWidget(Dialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 330, 263, 27));
+        layoutWidget->setGeometry(QRect(10, 430, 435, 27));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -70,19 +72,29 @@ public:
 
         horizontalLayout->addWidget(pushButton_2);
 
-        BtnPause = new QPushButton(layoutWidget);
-        BtnPause->setObjectName(QStringLiteral("BtnPause"));
-
-        horizontalLayout->addWidget(BtnPause);
-
         pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         horizontalLayout->addWidget(pushButton);
 
+        BtnPrevious = new QPushButton(layoutWidget);
+        BtnPrevious->setObjectName(QStringLiteral("BtnPrevious"));
+
+        horizontalLayout->addWidget(BtnPrevious);
+
+        BtnPause = new QPushButton(layoutWidget);
+        BtnPause->setObjectName(QStringLiteral("BtnPause"));
+
+        horizontalLayout->addWidget(BtnPause);
+
+        BtnNext = new QPushButton(layoutWidget);
+        BtnNext->setObjectName(QStringLiteral("BtnNext"));
+
+        horizontalLayout->addWidget(BtnNext);
+
         layoutWidget1 = new QWidget(Dialog);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(10, 274, 511, 67));
+        layoutWidget1->setGeometry(QRect(10, 374, 711, 67));
         formLayout = new QFormLayout(layoutWidget1);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -113,7 +125,7 @@ public:
 
         layoutWidget2 = new QWidget(Dialog);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(260, 60, 289, 211));
+        layoutWidget2->setGeometry(QRect(440, 30, 281, 321));
         gridLayout = new QGridLayout(layoutWidget2);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -123,11 +135,6 @@ public:
         panel->setObjectName(QStringLiteral("panel"));
 
         gridLayout->addWidget(panel, 1, 1, 1, 1);
-
-        playlist = new QListWidget(layoutWidget2);
-        playlist->setObjectName(QStringLiteral("playlist"));
-
-        gridLayout->addWidget(playlist, 1, 0, 1, 1);
 
         BtnAdd = new QPushButton(layoutWidget2);
         BtnAdd->setObjectName(QStringLiteral("BtnAdd"));
@@ -149,32 +156,37 @@ public:
 
         gridLayout->addWidget(BtnShuffle, 0, 0, 1, 1);
 
-        StatusLabel = new QLabel(Dialog);
-        StatusLabel->setObjectName(QStringLiteral("StatusLabel"));
-        StatusLabel->setGeometry(QRect(310, 340, 231, 20));
-        widget = new QWidget(Dialog);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 250, 139, 19));
-        horizontalLayout_2 = new QHBoxLayout(widget);
+        playlist = new QListWidget(layoutWidget2);
+        playlist->setObjectName(QStringLiteral("playlist"));
+
+        gridLayout->addWidget(playlist, 1, 0, 1, 1);
+
+        layoutWidget3 = new QWidget(Dialog);
+        layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(10, 350, 139, 19));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        positionLabel = new QLabel(widget);
+        positionLabel = new QLabel(layoutWidget3);
         positionLabel->setObjectName(QStringLiteral("positionLabel"));
 
         horizontalLayout_2->addWidget(positionLabel);
 
-        backslashlabel = new QLabel(widget);
+        backslashlabel = new QLabel(layoutWidget3);
         backslashlabel->setObjectName(QStringLiteral("backslashlabel"));
 
         horizontalLayout_2->addWidget(backslashlabel);
 
-        totalLabel = new QLabel(widget);
+        totalLabel = new QLabel(layoutWidget3);
         totalLabel->setObjectName(QStringLiteral("totalLabel"));
 
         horizontalLayout_2->addWidget(totalLabel);
 
+        imageLabel = new QLabel(Dialog);
+        imageLabel->setObjectName(QStringLiteral("imageLabel"));
+        imageLabel->setGeometry(QRect(20, 20, 391, 301));
 
         retranslateUi(Dialog);
 
@@ -185,18 +197,20 @@ public:
     {
         Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", nullptr));
         pushButton_2->setText(QApplication::translate("Dialog", "Stop", nullptr));
-        BtnPause->setText(QApplication::translate("Dialog", "Pause", nullptr));
         pushButton->setText(QApplication::translate("Dialog", "Start", nullptr));
+        BtnPrevious->setText(QApplication::translate("Dialog", "Previous", nullptr));
+        BtnPause->setText(QApplication::translate("Dialog", "Pause", nullptr));
+        BtnNext->setText(QApplication::translate("Dialog", "Next", nullptr));
         label->setText(QApplication::translate("Dialog", "Progress", nullptr));
         label_2->setText(QApplication::translate("Dialog", "Volume", nullptr));
         BtnAdd->setText(QApplication::translate("Dialog", "Add to Playlist", nullptr));
         Remove->setText(QApplication::translate("Dialog", "Remove ", nullptr));
         BtnRefresh->setText(QApplication::translate("Dialog", "Refresh List", nullptr));
         BtnShuffle->setText(QApplication::translate("Dialog", "Shuffle List", nullptr));
-        StatusLabel->setText(QString());
         positionLabel->setText(QApplication::translate("Dialog", "00:00:00", nullptr));
         backslashlabel->setText(QApplication::translate("Dialog", "/", nullptr));
         totalLabel->setText(QApplication::translate("Dialog", "00:00:00", nullptr));
+        imageLabel->setText(QString());
     } // retranslateUi
 
 };

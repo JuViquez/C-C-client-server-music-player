@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>565</width>
-    <height>363</height>
+    <width>736</width>
+    <height>463</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>330</y>
-     <width>263</width>
+     <y>430</y>
+     <width>435</width>
      <height>27</height>
     </rect>
    </property>
@@ -31,6 +31,20 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="BtnPrevious">
+      <property name="text">
+       <string>Previous</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="BtnPause">
       <property name="text">
        <string>Pause</string>
@@ -38,9 +52,9 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="BtnNext">
       <property name="text">
-       <string>Start</string>
+       <string>Next</string>
       </property>
      </widget>
     </item>
@@ -50,8 +64,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>274</y>
-     <width>511</width>
+     <y>374</y>
+     <width>711</width>
      <height>67</height>
     </rect>
    </property>
@@ -92,18 +106,15 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>60</y>
-     <width>289</width>
-     <height>211</height>
+     <x>440</x>
+     <y>30</y>
+     <width>281</width>
+     <height>321</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="1">
      <widget class="QListWidget" name="panel"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QListWidget" name="playlist"/>
     </item>
     <item row="2" column="1">
      <widget class="QPushButton" name="BtnAdd">
@@ -133,26 +144,16 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="0">
+     <widget class="QListWidget" name="playlist"/>
+    </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="StatusLabel">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>340</y>
-     <width>231</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>250</y>
+     <y>350</y>
      <width>139</width>
      <height>19</height>
     </rect>
@@ -180,6 +181,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="imageLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>391</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

@@ -4,6 +4,7 @@
 #include "playlistcontroller.h"
 #include <vector>
 #include <unistd.h>
+#include <QPixmap>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -39,29 +40,26 @@ void Dialog::on_sliderVolume_sliderMoved(int position)
 
 void Dialog::on_pushButton_clicked()
 {
-
-    string nextSong = ui->playlist->currentItem()->text().toLatin1().data();
-    player->stop();
-    if(!nextSong.compare(PLCObject.currentSong)){
-        player->play();
-    }else{
-        PLCObject.RemoveSongFile();
-        if(ui->playlist->currentItem()){
-            PLCObject.currentIndexSong = ui->playlist->currentRow();
-            PLCObject.currentSong = nextSong;
-            if(PLCObject.GetSong()>0){
-                QString applicationPath = QCoreApplication::applicationDirPath();
-                QString fileName = QString::fromStdString("/"+PLCObject.currentSong);
-                player->setMedia(QUrl::fromLocalFile(applicationPath.toUtf8().constData()+fileName));
-                player->play();
-                qDebug() << player->errorString();
+    if(ui->playlist->currentRow() > -1){
+        string nextSong = ui->playlist->currentItem()->text().toLatin1().data();
+        player->stop();
+        if(!nextSong.compare(PLCObject.currentSong)){
+            player->play();
+        }else{
+            PLCObject.RemoveSongFile();
+            if(ui->playlist->currentItem()){
+                PLCObject.currentIndexSong = ui->playlist->currentRow();
+                PLCObject.currentSong = nextSong;
+                if(PLCObject.GetSong()>0)
+                    LoadSong();
             }
-
         }
     }
 }
 
 void Dialog::LoadSong(){
+    QPixmap pic(PLCObject.currentImage.c_str());
+    ui->imageLabel->setPixmap(pic.scaled(ui->imageLabel->width(),ui->imageLabel->height(),Qt::KeepAspectRatio));
     QString applicationPath = QCoreApplication::applicationDirPath();
     QString fileName = QString::fromStdString("/"+PLCObject.currentSong);
     player->setMedia(QUrl::fromLocalFile(applicationPath.toUtf8().constData()+fileName));
@@ -143,6 +141,7 @@ void Dialog::on_BtnShuffle_clicked()
         for(std::string &s : PLCObject.queueplayList) {
             ui->playlist->addItem(s.c_str());
         }
+        ui->playlist->setCurrentRow(PLCObject.currentIndexSong);
     }
 }
 
@@ -157,3 +156,19 @@ void Dialog::on_BtnPause_clicked()
     }
 }
 
+
+void Dialog::on_BtnNext_clicked()
+{
+    if(PLCObject.PlayNextSong() > 0){
+        LoadSong();
+        ui->playlist->setCurrentRow(PLCObject.currentIndexSong);
+    }
+}
+
+void Dialog::on_BtnPrevious_clicked()
+{
+    if(PLCObject.PlayPreviousSong() > 0){
+        LoadSong();
+        ui->playlist->setCurrentRow(PLCObject.currentIndexSong);
+    }
+}
