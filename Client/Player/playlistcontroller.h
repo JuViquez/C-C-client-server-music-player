@@ -12,7 +12,7 @@ class PlaylistController
 public:
     PlaylistController();
     //Methods
-    void SetSockets();
+    int Login(string UserName, string Password);
     int GetSongsList();
     int GetSong();
     void RemoveSongFromPlaylist(int songIndex);

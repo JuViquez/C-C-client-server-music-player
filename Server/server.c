@@ -12,6 +12,14 @@
 
 struct sockaddr_in c_addr;
 
+void VerifyUser(int connfd){
+    char user[50] = {0};
+    char password[50] = {0};
+    read(connfd, user, sizeof(user));
+    read(connfd, password, sizeof(password));
+    printf(" USER %s y password %s ",user,password);
+}
+
 void SendFileListToClient(int connfd){
 	char fileList[10][100] = {{0}};
 	getDirFileList(10, 100, fileList,"./songs"); //retrieve the list of files from the dir "songs"
@@ -92,6 +100,9 @@ void* attendClient(int* arg){
 				strcat(fullpath, fname);
 				SendFileToClient(connfd, fullpath);
 				break;
+                        case 4:
+                                VerifyUser(connfd);
+                                break;
 		}
 	}
 

@@ -30,16 +30,24 @@ PlaylistController::PlaylistController()
     }
 }
 
-void PlaylistController::SetSockets(){
-    printf("\n set sockets \n");
-}
-
-int PlaylistController::GetSongsList(){
+int PlaylistController::Login(string UserName, string Password){
     if(connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<0)
     {
             printf("\n Error : Connect Failed \n");
             return -1;
     }
+    int buff[1] = {4};
+    write(sockfd, buff, 1);
+    write(sockfd, UserName.c_str(), 50);
+    write(sockfd, Password.c_str(), 50);
+}
+
+int PlaylistController::GetSongsList(){
+    /*if(connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<0)
+    {
+            printf("\n Error : Connect Failed \n");
+            return -1;
+    }*/
     int buff[1] = {1};
     write(sockfd, buff, 1);
     char fileList[10][100] = {{0}};

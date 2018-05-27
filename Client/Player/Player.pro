@@ -14,9 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     dialog.cpp \
-    playlistcontroller.cpp
+    playlistcontroller.cpp \
+    loginform.cpp
 
 HEADERS  += dialog.h \
-    playlistcontroller.h
+    playlistcontroller.h \
+    loginform.h
 
-FORMS    += dialog.ui
+FORMS    += dialog.ui \
+    loginform.ui
