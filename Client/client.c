@@ -64,8 +64,15 @@ else
          return 1;
     	}
     long double sz=1;
+    char username[50] = "julito";
+    char password[50] = "123";
     /* Receive data in chunks of 256 bytes */
-    int buff[1] = {2};
+    int buff[1] = {4};
+    write(sockfd, buff, 1);
+    write(sockfd, username, 50);
+    write(sockfd, password, 50);
+    
+    buff[0] = 2;
     write(sockfd, buff, 1);
     char* h = "hola.txt";
     write(sockfd, "hola.txt", 100);
