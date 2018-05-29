@@ -24,4 +24,3 @@ int getFileChunk(char* buff, int buff_size,FILE* file){
 }
 
 
-
