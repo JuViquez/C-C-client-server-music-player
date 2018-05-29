@@ -16,12 +16,11 @@ void getDirFileList(int buff_size, int file_name_size, char buff[buff_size][file
     }
     closedir(d);
   }
-}
+} 
 
 
 int getFileChunk(char* buff, int buff_size,FILE* file){
    return fread(buff,1,buff_size,file);
 }
-
 
 
