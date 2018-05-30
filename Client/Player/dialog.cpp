@@ -5,6 +5,9 @@
 #include <vector>
 #include <unistd.h>
 #include <QPixmap>
+#include <ctime>
+#include <iostream>
+#include <cstdlib>
 
 Dialog::Dialog(QWidget *parent, PlaylistController *SuperObject) :
     QDialog(parent),
@@ -16,7 +19,7 @@ Dialog::Dialog(QWidget *parent, PlaylistController *SuperObject) :
     connect(player, &QMediaPlayer::positionChanged, this, &Dialog::on_positionChanged);
     connect(player, &QMediaPlayer::durationChanged, this, &Dialog::on_durationChanged);
     connect(player,SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),this,SLOT(mediaStatusChanged(QMediaPlayer::MediaStatus)));
-
+    SetDefaultUI();
 }
 
 Dialog::~Dialog()
@@ -102,6 +105,9 @@ void Dialog::mediaStatusChanged(QMediaPlayer::MediaStatus state)
 {
     if(state==QMediaPlayer::EndOfMedia)
     {
+        if(ui->randomCheck->isChecked() && PLCObject->queueplayList.size()){
+            SetRandomIndex();
+        }
         if(PLCObject->PlayNextSong() > 0){
             LoadSong();
             ui->playlist->setCurrentRow(PLCObject->currentIndexSong);
@@ -158,6 +164,9 @@ void Dialog::on_BtnPause_clicked()
 
 void Dialog::on_BtnNext_clicked()
 {
+    if(ui->randomCheck->isChecked() && PLCObject->queueplayList.size()){
+        SetRandomIndex();
+    }
     if(PLCObject->PlayNextSong() > 0){
         LoadSong();
         ui->playlist->setCurrentRow(PLCObject->currentIndexSong);
@@ -170,4 +179,47 @@ void Dialog::on_BtnPrevious_clicked()
         LoadSong();
         ui->playlist->setCurrentRow(PLCObject->currentIndexSong);
     }
+}
+
+void Dialog::SetRandomIndex(){
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, PLCObject->queueplayList.size()-1);
+    PLCObject->currentIndexSong = dis(gen);
+}
+
+void Dialog::SetDefaultUI(){
+    //Background form
+    QPixmap bkgnd("background.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, bkgnd);
+    this->setPalette(palette);
+    //Labels
+    QPalette sample_palette;
+    sample_palette.setColor(QPalette::WindowText, Qt::white);
+    ui->positionLabel->setPalette(sample_palette);
+    ui->totalLabel->setPalette(sample_palette);
+    ui->backslashlabel->setPalette(sample_palette);
+
+    //Stop
+    QPixmap StopPixmap("../Buttons/Stop.png");
+    QIcon StopIcon(StopPixmap);
+    ui->pushButton_2->setIcon(StopIcon);
+    //Start
+    QPixmap StartPixmap("../Buttons/Play.png");
+    QIcon StartIcon(StartPixmap);
+    ui->pushButton->setIcon(StartIcon);
+    //Previous
+    QPixmap PreviousPixmap("../Buttons/Previous.png");
+    QIcon PreviousIcon(PreviousPixmap);
+    ui->BtnPrevious->setIcon(PreviousIcon);
+    //Play
+    QPixmap PausePixmap("../Buttons/Pause.png");
+    QIcon PauseIcon(PausePixmap);
+    ui->BtnPause->setIcon(PauseIcon);
+    //Next
+    QPixmap NextPixmap("../Buttons/Next.png");
+    QIcon NextIcon(NextPixmap);
+    ui->BtnNext->setIcon(NextIcon);
 }

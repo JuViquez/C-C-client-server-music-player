@@ -1,0 +1,200 @@
+2018-5-29 12:44:25 --- Connection aceepted and id: 4
+2018-5-29 12:44:25 --- Access denied to User: asad
+2018-5-29 12:44:29 --- File list Sent to user: asad
+2018-5-29 12:44:37 --- Closing Connection for user: asad
+2018-5-29 18:1:16 --- Connection aceepted and id: 4
+2018-5-29 18:1:16 --- Open Connection with User: gdsg
+2018-5-29 18:1:22 --- Closing Connection for user: gdsg
+2018-5-29 18:2:55 --- Connection aceepted and id: 4
+2018-5-29 18:2:55 --- Open Connection with User: fsvs
+2018-5-29 18:2:58 --- Closing Connection for user: fsvs
+2018-5-29 18:4:6 --- Connection aceepted and id: 4
+2018-5-29 18:4:6 --- Access denied to User: fgd
+2018-5-29 18:4:19 --- Connection aceepted and id: 5
+2018-5-29 18:4:19 --- Open Connection with User: tonito
+2018-5-29 18:4:21 --- Closing Connection for user: fgd
+2018-5-29 18:4:21 --- Closing Connection for user: tonito
+2018-5-29 19:36:43 --- Connection aceepted and id: 4
+2018-5-29 19:36:43 --- Open Connection with User: julito
+2018-5-29 19:36:48 --- File list Sent to user: julito
+2018-5-29 19:37:1 --- File ./songs/Bohemian Rhapsody - Queen.mp3 sent to julito
+2018-5-29 19:37:1 --- Error reading for user: julito
+2018-5-29 19:37:1 --- File ./images/Bohemian Rhapsody - Queen.png sent to julito
+2018-5-29 19:37:1 --- Error reading for user: julito
+2018-5-29 19:38:5 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 19:38:5 --- Error reading for user: julito
+2018-5-29 19:38:5 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 19:38:5 --- Error reading for user: julito
+2018-5-29 19:38:24 --- Closing Connection for user: julito
+2018-5-29 19:42:43 --- Connection aceepted and id: 5
+2018-5-29 19:42:43 --- Open Connection with User: julito
+2018-5-29 19:42:45 --- File list Sent to user: julito
+2018-5-29 19:43:16 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 19:43:16 --- Error reading for user: julito
+2018-5-29 19:43:16 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 19:43:16 --- Error reading for user: julito
+2018-5-29 19:44:22 --- Closing Connection for user: julito
+2018-5-29 19:48:38 --- Connection aceepted and id: 4
+2018-5-29 19:48:38 --- Open Connection with User: julito
+2018-5-29 19:48:41 --- File list Sent to user: julito
+2018-5-29 19:48:48 --- File ./songs/Bohemian Rhapsody - Queen.mp3 sent to julito
+2018-5-29 19:48:48 --- Error reading for user: julito
+2018-5-29 19:48:48 --- File ./images/Bohemian Rhapsody - Queen.png sent to julito
+2018-5-29 19:48:48 --- Error reading for user: julito
+2018-5-29 19:49:23 --- Connection aceepted and id: 5
+2018-5-29 19:49:23 --- Open Connection with User: julito
+2018-5-29 19:50:30 --- File list Sent to user: julito
+2018-5-29 19:50:37 --- File ./songs/Bohemian Rhapsody - Queen.mp3 sent to julito
+2018-5-29 19:50:37 --- Error reading for user: julito
+2018-5-29 19:50:37 --- File ./images/Bohemian Rhapsody - Queen.png sent to julito
+2018-5-29 19:50:37 --- Error reading for user: julito
+2018-5-29 19:51:2 --- Closing Connection for user: julito
+2018-5-29 19:51:2 --- Closing Connection for user: julito
+2018-5-29 19:53:12 --- Connection aceepted and id: 14
+2018-5-29 19:53:12 --- Open Connection with User: julito
+2018-5-29 19:53:14 --- File list Sent to user: julito
+2018-5-29 19:53:28 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 19:53:28 --- Error reading for user: julito
+2018-5-29 19:53:28 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 19:53:28 --- Error reading for user: julito
+2018-5-29 19:53:32 --- Closing Connection for user: julito
+2018-5-29 19:55:34 --- Connection aceepted and id: 4
+2018-5-29 19:55:34 --- Open Connection with User: julito
+2018-5-29 19:55:35 --- File list Sent to user: julito
+2018-5-29 19:56:6 --- File ./songs/Un Velero Llamado Libertad - Perales.mp3 sent to julito
+2018-5-29 19:56:6 --- Error reading for user: julito
+2018-5-29 19:56:6 --- File ./images/Un Velero Llamado Libertad - Perales.png sent to julito
+2018-5-29 19:56:6 --- Error reading for user: julito
+2018-5-29 19:56:42 --- Closing Connection for user: julito
+2018-5-29 20:0:20 --- Connection aceepted and id: 14
+2018-5-29 20:0:20 --- Open Connection with User: julito
+2018-5-29 20:0:21 --- File list Sent to user: julito
+2018-5-29 20:3:29 --- Closing Connection for user: julito
+2018-5-29 20:3:39 --- Connection aceepted and id: 4
+2018-5-29 20:3:39 --- Open Connection with User: julito
+2018-5-29 20:3:41 --- File list Sent to user: julito
+2018-5-29 20:4:6 --- Closing Connection for user: julito
+2018-5-29 20:9:8 --- Connection aceepted and id: 14
+2018-5-29 20:9:8 --- Open Connection with User: julito
+2018-5-29 20:9:10 --- File list Sent to user: julito
+2018-5-29 20:9:33 --- Closing Connection for user: julito
+2018-5-29 20:10:53 --- Connection aceepted and id: 4
+2018-5-29 20:10:53 --- Open Connection with User: julito
+2018-5-29 20:10:55 --- File list Sent to user: julito
+2018-5-29 20:11:35 --- Closing Connection for user: julito
+2018-5-29 20:17:22 --- Connection aceepted and id: 14
+2018-5-29 20:17:22 --- Open Connection with User: julito
+2018-5-29 20:17:24 --- File list Sent to user: julito
+2018-5-29 20:17:37 --- File ./songs/Un Velero Llamado Libertad - Perales.mp3 sent to julito
+2018-5-29 20:17:37 --- Error reading for user: julito
+2018-5-29 20:17:37 --- File ./images/Un Velero Llamado Libertad - Perales.png sent to julito
+2018-5-29 20:17:37 --- Error reading for user: julito
+2018-5-29 20:17:43 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 20:17:43 --- Error reading for user: julito
+2018-5-29 20:17:43 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 20:17:43 --- Error reading for user: julito
+2018-5-29 20:18:17 --- File ./songs/Un Velero Llamado Libertad - Perales.mp3 sent to julito
+2018-5-29 20:18:17 --- Error reading for user: julito
+2018-5-29 20:18:17 --- File ./images/Un Velero Llamado Libertad - Perales.png sent to julito
+2018-5-29 20:18:17 --- Error reading for user: julito
+2018-5-29 20:18:19 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 20:18:19 --- Error reading for user: julito
+2018-5-29 20:18:19 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 20:18:19 --- Error reading for user: julito
+2018-5-29 20:18:20 --- File ./songs/Bohemian Rhapsody - Queen.mp3 sent to julito
+2018-5-29 20:18:20 --- Error reading for user: julito
+2018-5-29 20:18:20 --- File ./images/Bohemian Rhapsody - Queen.png sent to julito
+2018-5-29 20:18:20 --- Error reading for user: julito
+2018-5-29 20:18:27 --- File ./songs/Un Velero Llamado Libertad - Perales.mp3 sent to julito
+2018-5-29 20:18:27 --- Error reading for user: julito
+2018-5-29 20:18:27 --- File ./images/Un Velero Llamado Libertad - Perales.png sent to julito
+2018-5-29 20:18:27 --- Error reading for user: julito
+2018-5-29 20:18:32 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 20:18:32 --- Error reading for user: julito
+2018-5-29 20:18:32 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 20:18:32 --- Error reading for user: julito
+2018-5-29 20:18:44 --- File ./songs/Three Little Birds - Bob Marley.mp3 sent to julito
+2018-5-29 20:18:44 --- Error reading for user: julito
+2018-5-29 20:18:44 --- File ./images/Three Little Birds - Bob Marley.png sent to julito
+2018-5-29 20:18:44 --- Error reading for user: julito
+2018-5-29 20:18:48 --- Closing Connection for user: julito
+2018-5-29 20:19:7 --- Connection aceepted and id: 4
+2018-5-29 20:19:7 --- Open Connection with User: julito
+2018-5-29 20:19:9 --- File list Sent to user: julito
+2018-5-29 20:19:20 --- File ./songs/Three Little Birds - Bob Marley.mp3 sent to julito
+2018-5-29 20:19:20 --- Error reading for user: julito
+2018-5-29 20:19:20 --- File ./images/Three Little Birds - Bob Marley.png sent to julito
+2018-5-29 20:19:20 --- Error reading for user: julito
+2018-5-29 20:19:38 --- File ./songs/Bohemian Rhapsody - Queen.mp3 sent to julito
+2018-5-29 20:19:38 --- Error reading for user: julito
+2018-5-29 20:19:38 --- File ./images/Bohemian Rhapsody - Queen.png sent to julito
+2018-5-29 20:19:38 --- Error reading for user: julito
+2018-5-29 20:19:45 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 20:19:45 --- Error reading for user: julito
+2018-5-29 20:19:45 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 20:19:45 --- Error reading for user: julito
+2018-5-29 20:19:50 --- File ./songs/Un Velero Llamado Libertad - Perales.mp3 sent to julito
+2018-5-29 20:19:50 --- Error reading for user: julito
+2018-5-29 20:19:50 --- File ./images/Un Velero Llamado Libertad - Perales.png sent to julito
+2018-5-29 20:19:50 --- Error reading for user: julito
+2018-5-29 20:19:56 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 20:19:56 --- Error reading for user: julito
+2018-5-29 20:19:56 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 20:19:56 --- Error reading for user: julito
+2018-5-29 20:20:13 --- Closing Connection for user: julito
+2018-5-29 20:24:42 --- Connection aceepted and id: 14
+2018-5-29 20:24:42 --- Open Connection with User: julito
+2018-5-29 20:26:9 --- Closing Connection for user: julito
+2018-5-29 21:37:14 --- Connection aceepted and id: 4
+2018-5-29 21:37:14 --- Open Connection with User: julito
+2018-5-29 21:38:2 --- Closing Connection for user: julito
+2018-5-29 21:59:54 --- Connection aceepted and id: 14
+2018-5-29 21:59:54 --- Open Connection with User: julito
+2018-5-29 22:1:29 --- Connection aceepted and id: 4
+2018-5-29 22:1:29 --- Open Connection with User: julito
+2018-5-29 22:2:20 --- Closing Connection for user: julito
+2018-5-29 22:2:24 --- Closing Connection for user: julito
+2018-5-29 22:17:13 --- Connection aceepted and id: 46
+2018-5-29 22:17:13 --- Open Connection with User: julito
+2018-5-29 22:17:18 --- Closing Connection for user: julito
+2018-5-29 22:18:26 --- Connection aceepted and id: 4
+2018-5-29 22:18:26 --- Open Connection with User: julito
+2018-5-29 22:18:29 --- File list Sent to user: julito
+2018-5-29 22:19:3 --- File list Sent to user: julito
+2018-5-29 22:19:17 --- Closing Connection for user: julito
+2018-5-29 22:23:14 --- Connection aceepted and id: 14
+2018-5-29 22:23:14 --- Access denied to User: julfsf
+2018-5-29 22:23:24 --- Connection aceepted and id: 4
+2018-5-29 22:23:24 --- Open Connection with User: julito
+2018-5-29 22:23:26 --- File list Sent to user: julito
+2018-5-29 22:23:28 --- File list Sent to user: julito
+2018-5-29 22:23:42 --- File ./songs/Chopin.mp3 sent to julito
+2018-5-29 22:23:42 --- Error reading for user: julito
+2018-5-29 22:23:42 --- File ./images/Chopin.png sent to julito
+2018-5-29 22:23:42 --- Error reading for user: julito
+2018-5-29 22:23:51 --- File ./songs/Three Little Birds - Bob Marley.mp3 sent to julito
+2018-5-29 22:23:51 --- Error reading for user: julito
+2018-5-29 22:23:51 --- File ./images/Three Little Birds - Bob Marley.png sent to julito
+2018-5-29 22:23:51 --- Error reading for user: julito
+2018-5-29 22:23:54 --- File ./songs/Un Velero Llamado Libertad - Perales.mp3 sent to julito
+2018-5-29 22:23:54 --- Error reading for user: julito
+2018-5-29 22:23:54 --- File ./images/Un Velero Llamado Libertad - Perales.png sent to julito
+2018-5-29 22:23:54 --- Error reading for user: julito
+2018-5-29 22:24:36 --- File ./songs/Maldito Duende - Heroes.mp3 sent to julito
+2018-5-29 22:24:36 --- Error reading for user: julito
+2018-5-29 22:24:36 --- File ./images/Maldito Duende - Heroes.png sent to julito
+2018-5-29 22:24:36 --- Error reading for user: julito
+2018-5-29 22:24:55 --- File ./songs/Three Little Birds - Bob Marley.mp3 sent to julito
+2018-5-29 22:24:55 --- Error reading for user: julito
+2018-5-29 22:24:55 --- File ./images/Three Little Birds - Bob Marley.png sent to julito
+2018-5-29 22:24:55 --- Error reading for user: julito
+2018-5-29 22:24:59 --- File ./songs/Bohemian Rhapsody - Queen.mp3 sent to julito
+2018-5-29 22:24:59 --- Error reading for user: julito
+2018-5-29 22:24:59 --- File ./images/Bohemian Rhapsody - Queen.png sent to julito
+2018-5-29 22:24:59 --- Error reading for user: julito
+2018-5-29 22:25:57 --- File ./songs/Chopin.mp3 sent to julito
+2018-5-29 22:25:57 --- Error reading for user: julito
+2018-5-29 22:25:57 --- File ./images/Chopin.png sent to julito
+2018-5-29 22:25:57 --- Error reading for user: julito
+2018-5-29 22:27:14 --- Closing Connection for user: julfsf
+2018-5-29 22:27:14 --- Closing Connection for user: julito

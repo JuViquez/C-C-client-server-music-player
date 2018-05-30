@@ -18,8 +18,13 @@ void LoginForm::on_BtnEnter_clicked()
 {
     //SocketObject
     SocketObject = new PlaylistController();
-    SocketObject->Login(ui->userBox->text().toLatin1().data(),ui->passwordBox->text().toLatin1().data());
-    DialogUI = new Dialog(this,SocketObject);
-    DialogUI->exec();
+    if(SocketObject->Login(ui->userBox->text().toLatin1().data(),ui->passwordBox->text().toLatin1().data())){
+        ui->label_3->setText("Ingrese sus credenciales");
+        DialogUI = new Dialog(this,SocketObject);
+        DialogUI->exec();
+    }else{
+        ui->label_3->setText("ERROR: Datos invalidos");
+    };
+
     //this->();
 }

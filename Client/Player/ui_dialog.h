@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
@@ -33,6 +34,7 @@ public:
     QPushButton *BtnPrevious;
     QPushButton *BtnPause;
     QPushButton *BtnNext;
+    QCheckBox *randomCheck;
     QWidget *layoutWidget1;
     QFormLayout *formLayout;
     QLabel *label;
@@ -58,10 +60,10 @@ public:
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QStringLiteral("Dialog"));
-        Dialog->resize(736, 463);
+        Dialog->resize(770, 502);
         layoutWidget = new QWidget(Dialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 430, 435, 27));
+        layoutWidget->setGeometry(QRect(10, 450, 524, 27));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -92,9 +94,14 @@ public:
 
         horizontalLayout->addWidget(BtnNext);
 
+        randomCheck = new QCheckBox(layoutWidget);
+        randomCheck->setObjectName(QStringLiteral("randomCheck"));
+
+        horizontalLayout->addWidget(randomCheck);
+
         layoutWidget1 = new QWidget(Dialog);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(10, 374, 711, 67));
+        layoutWidget1->setGeometry(QRect(10, 374, 751, 67));
         formLayout = new QFormLayout(layoutWidget1);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -125,7 +132,7 @@ public:
 
         layoutWidget2 = new QWidget(Dialog);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(440, 30, 281, 321));
+        layoutWidget2->setGeometry(QRect(440, 30, 321, 331));
         gridLayout = new QGridLayout(layoutWidget2);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -186,7 +193,7 @@ public:
 
         imageLabel = new QLabel(Dialog);
         imageLabel->setObjectName(QStringLiteral("imageLabel"));
-        imageLabel->setGeometry(QRect(20, 20, 391, 301));
+        imageLabel->setGeometry(QRect(30, 20, 391, 301));
 
         retranslateUi(Dialog);
 
@@ -201,6 +208,7 @@ public:
         BtnPrevious->setText(QApplication::translate("Dialog", "Previous", nullptr));
         BtnPause->setText(QApplication::translate("Dialog", "Pause", nullptr));
         BtnNext->setText(QApplication::translate("Dialog", "Next", nullptr));
+        randomCheck->setText(QApplication::translate("Dialog", "Random", nullptr));
         label->setText(QApplication::translate("Dialog", "Progress", nullptr));
         label_2->setText(QApplication::translate("Dialog", "Volume", nullptr));
         BtnAdd->setText(QApplication::translate("Dialog", "Add to Playlist", nullptr));

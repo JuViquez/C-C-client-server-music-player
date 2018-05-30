@@ -40,6 +40,9 @@ int PlaylistController::Login(string UserName, string Password){
     write(sockfd, buff, 1);
     write(sockfd, UserName.c_str(), 50);
     write(sockfd, Password.c_str(), 50);
+    int response[1] = {0};
+    read(sockfd, response, 1);
+    return response[0];
 }
 
 int PlaylistController::GetSongsList(){
@@ -48,6 +51,7 @@ int PlaylistController::GetSongsList(){
             printf("\n Error : Connect Failed \n");
             return -1;
     }*/
+    songsList.clear();
     int buff[1] = {1};
     write(sockfd, buff, 1);
     char fileList[10][100] = {{0}};

@@ -40,8 +40,9 @@ int VerifyUser(char* username, char* password){
     {
 	sscanf(line, "%[^,],%[^,]", user, pass);
 	printf("%s - %s\n", user, pass);
-        if(strcmp(username, user) == 0 && strcmp(password,pass) == 0) 
-		return 1;
+        if(strcmp(username, user) == 0 && strcmp(password,pass) == 0){
+            fclose(usersFile);
+            return 1;}
     }     
     fclose(usersFile);
     return 0;
@@ -158,7 +159,7 @@ void* attendClient(int* arg){
 				fflush(stdout);
 				int verification[1] = {0};
 				verification[0] = VerifyUser(user,password);
-				if (verification){
+                                if (verification[0]){
 					sprintf(logMsg, "Open Connection with User: %s",user);	
 					printf("%s\n",logMsg);
 					fflush(stdout);}

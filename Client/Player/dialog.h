@@ -52,6 +52,10 @@ private slots:
 
     void on_BtnPrevious_clicked();
 
+    void SetRandomIndex();
+
+    void SetDefaultUI();
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;
