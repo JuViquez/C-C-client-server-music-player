@@ -75,8 +75,8 @@ void SendFileToClient(int connfd,char* fname, char* username)
 		while(1)
 		{
 		    /* First read file in chunks of 256 bytes */
-		    unsigned char buff[1024]={0};
-		    int nread = getFileChunk(buff,1024,fp);
+                    unsigned char buff[32768]={0};
+                    int nread = getFileChunk(buff,32768,fp);
 		    printf("Bytes read %d \n", nread);
 		    fflush(stdout);
 
@@ -87,7 +87,7 @@ void SendFileToClient(int connfd,char* fname, char* username)
 			fflush(stdout);
 		        write(connfd, buff, nread);
 		    }
-		    if (nread < 1024)
+                    if (nread < 32768)
 		    {
 		        if (feof(fp))
 			{

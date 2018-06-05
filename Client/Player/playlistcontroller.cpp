@@ -67,6 +67,7 @@ int PlaylistController::GetSongsList(){
 
 int PlaylistController::GetSong(){
     try{
+       // memset(recvBuff,0,sizeof(recvBuff));
         FILE *fp;
         int bytesReceived = 0;
         fp = fopen(currentSong.c_str(), "ab");
@@ -77,13 +78,14 @@ int PlaylistController::GetSong(){
        int buff[1] = {2};
        write(sockfd, buff, 1);
        write(sockfd, currentSong.c_str(), 100);
-       while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0){
-            fwrite(recvBuff, 1,bytesReceived,fp);
-            if(bytesReceived < 1024) break;
+       while((bytesReceived = read(sockfd, recvBuff, 32768)) > 0){
+            fwrite(recvBuff, sizeof(char),bytesReceived,fp);
+            if(bytesReceived < 32768) break;
         }
+       usleep(1000000);
        fclose (fp);
        currentImage = currentSong.substr(0, currentSong.size()-3) + "png";
-
+       // memset(recvBuff,0,sizeof(recvBuff));
        //Image File
        FILE *fpImage;
        bytesReceived = 0;
@@ -95,9 +97,9 @@ int PlaylistController::GetSong(){
        buff[0] = 3;
        write(sockfd, buff, 1);
        write(sockfd, currentImage.c_str(), 100);
-       while((bytesReceived = read(sockfd, recvBuff, 1024)) > 0){
-           fwrite(recvBuff, 1,bytesReceived,fpImage);
-           if(bytesReceived < 1024) break;
+       while((bytesReceived = read(sockfd, recvBuff, 32768)) > 0){
+           fwrite(recvBuff, sizeof(char),bytesReceived,fpImage);
+           if(bytesReceived < 32768) break;
        }
        fclose (fpImage);
       // close(sockfd);

@@ -27,7 +27,7 @@ public:
     string currentImage;
     //Sockets attributes
     int sockfd = 0;
-    char recvBuff[1024];
+    char recvBuff[32768];
     struct sockaddr_in serv_addr;
     //QListWidget vector
     vector<string> queueplayList; //Playlist
